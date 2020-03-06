@@ -1,22 +1,20 @@
 class Api::ProductsController < ApplicationController
-  def all_products_action
+  def index
     @message = "Welcome, enjoy the Fannie Mae Chocolate"
-    @all_products = Product.all
-    render "all_products.json.jb"
+    @products = Product.all
+    render "index.json.jb"
   end
 
-  def first_product_action
-    @product = Product.first
-    render "first_product.json.jb"
+  def show
+    @product = Product.find_by(id: params[:id])
+    render "show.json.jb"
   end
 
-  def any_product_action
-    product_id = params["id"]
-    #product_name = params["name"]
-    #product_price = params["price"]
-    #@product = Product.find_by(name: product_name)
-    #@product = Product.find_by(price: product_price)
-    @product = Product.find_by(id: product_id)
-    render "product.json.jb"
+  def create
+    @product = Product.new
+    product.name = params["name"]
+    product.price = params["price"]
+    product.description = prarms["description"]
+    render "create.json.jb"
   end
 end
