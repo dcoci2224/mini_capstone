@@ -9,4 +9,14 @@ class Api::ProductsController < ApplicationController
     @product = Product.first
     render "first_product.json.jb"
   end
+
+  def any_product_action
+    product_id = params["id"]
+    #product_name = params["name"]
+    #product_price = params["price"]
+    #@product = Product.find_by(name: product_name)
+    #@product = Product.find_by(price: product_price)
+    @product = Product.find_by(id: product_id)
+    render "product.json.jb"
+  end
 end
