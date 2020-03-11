@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
-  def is_discounted?
-    price < 10
+  validates :name, presence: true, uniqueness: true
+  validates :price, presence: true, numericality: { greater_than: 0 }
+  validates :description, length: { in: 10..500 }  #in: means within
+
+  def discount
+    price < 14
   end
 
   def tax

@@ -2,6 +2,25 @@ class Api::ProductsController < ApplicationController
   def index
     @message = "Welcome, enjoy the Fannie Mae Chocolate"
     @products = Product.all
+
+    if params[:search]
+      @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
+
+      @products = @products.order(:id => :asc)
+    end
+
+    if params[:discount]
+      @products = @products.where("price <= ?", 14)
+    end
+
+    if params[:sort] == "price" && params[:sort_order] == "desc"
+      @products = @product.order(:price => :desc)
+    elsif params[:sort] == "price"
+      @products = @products.order(:price => :asc)
+    else
+      @products = @products.order(:id => :asc)
+    end
+
     render "index.json.jb"
   end
 
@@ -18,8 +37,11 @@ class Api::ProductsController < ApplicationController
       description: params["description"],
       image_url: params["image_url"],
     )
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity #status 422
+    end
   end
 
   def update
@@ -29,8 +51,11 @@ class Api::ProductsController < ApplicationController
     @product.description = params["description"]
     @product.id = params["id"]
     @product.image_url = params["image_url"]
-    @product.save
-    render "show.json.jb"
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity #status 422
+    end
   end
 
   def delete
