@@ -1,6 +1,6 @@
 class Api::ProductsController < ApplicationController
   def index
-    @message = "Welcome, enjoy the Fannie Mae Chocolate"
+    @message = "Welcome, enjoy the Fannie May Chocolate"
     @products = Product.all
 
     if params[:search]
@@ -34,7 +34,7 @@ class Api::ProductsController < ApplicationController
       name: params["name"],
       price: params["price"],
       description: params["description"],
-      image_url: params["image_url"],
+      image: params["image"],
     )
     if @product.save
       render "show.json.jb"
@@ -49,7 +49,7 @@ class Api::ProductsController < ApplicationController
     @product.price = params["price"]
     @product.description = params["description"]
     @product.id = params["id"]
-    @product.image_url = params["image_url"]
+    @product.image = params["image"]
     if @product.save
       render "show.json.jb"
     else

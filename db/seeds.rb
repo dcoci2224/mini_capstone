@@ -19,3 +19,41 @@ my_product4.save
 
 my_product5 = Product.new({ name: "Buckeyes", price: 16, description: "Creamy peanut butter center in our signature milk chocolate by the pound." })
 my_product5.save
+
+my_image = Image.new({ url: "", product_id: 4 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 4 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 4 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 3 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 3 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 3 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 2 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 2 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id: 2 })
+my_image.save
+
+my_image = Image.new({ url: "", product_id:  })
+my_image.save
+
+my_image = Image.new({ url: "", product_id:  })
+my_image.save
+
+my_image = Image.new({ url: "", product_id:  })
+my_image.save
+
+
