@@ -34,9 +34,11 @@ class Api::ProductsController < ApplicationController
       name: params["name"],
       price: params["price"],
       description: params["description"],
-      image: params["image"],
+      supplier_id: params["supplier_id"],
+      user_id: current_user.id,
     )
     if @product.save
+      Image.create(url: params["image_url"], product_id: @product.id)
       render "show.json.jb"
     else
       render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity #status 422
@@ -45,11 +47,10 @@ class Api::ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params["id"])
-    @product.name = params["name"]
-    @product.price = params["price"]
-    @product.description = params["description"]
+    @product.name = params["name"] || @product.name
+    @product.price = params["price"] || @product.price
+    @product.description = params["description"] || @product.description
     @product.id = params["id"]
-    @product.image = params["image"]
     if @product.save
       render "show.json.jb"
     else
