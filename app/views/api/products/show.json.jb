@@ -1,11 +1,1 @@
-{
-  id: @product.id,
-  name: @product.name,
-  price: @product.price,
-  description: @product.description,
-  supplier_id: @product.supplier_id,
-  supplier_name: @product.supplier,
-  images: @product.images,
-  tax: @product.tax,
-  total: @product.total,
-}
+

@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :description, length: { in: 10..500 }  #in: means within
 
+  has_many :orders
   has_many :images
   belongs_to :supplier
   # def supplier
